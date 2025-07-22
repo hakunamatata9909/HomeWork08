@@ -7,6 +7,9 @@
 *.o
 *.obj
 
+# Jetbrain Rider
+*.idea/
+
 # Precompiled Headers
 *.gch
 *.pch
