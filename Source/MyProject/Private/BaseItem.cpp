@@ -1,5 +1,7 @@
 #include "BaseItem.h"
 #include "Components/SphereComponent.h"
+#include "kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 ABaseItem::ABaseItem()
@@ -44,6 +46,39 @@ void ABaseItem:: OnItemEndOverlap(
 }
 void ABaseItem:: ActivateItem(AActor* Activator)
 {
+	UParticleSystemComponent* Pickup = nullptr;
+	if (PickupParticle)
+	{
+		Pickup=UGameplayStatics::SpawnEmitterAtLocation(GetWorld(),
+			PickupParticle,
+			GetActorLocation(),
+			GetActorRotation(),
+			true
+			);
+	}
+	UE_LOG(LogTemp,Warning,TEXT("Pickup activated"));
+	if (PickupSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(),
+			PickupSound,
+			GetActorLocation(),
+			GetActorRotation()
+			);
+	}
+
+	if (Pickup)
+	{
+		FTimerHandle TimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(
+			TimerHandle,
+			[Pickup]()
+			{
+				Pickup->DestroyComponent();
+			},
+			2.0f,
+			false
+			);
+	}
 }
 
 FName ABaseItem:: GetItemType() const

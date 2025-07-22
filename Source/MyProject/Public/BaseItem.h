@@ -54,7 +54,11 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "StaticMesh")
 	UStaticMeshComponent* StaticMesh;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Effects")
+	UParticleSystem* PickupParticle;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item|Sound")
+	USoundBase* PickupSound;
 	
 public:	
 	// Called every frame

@@ -25,10 +25,16 @@ public:
 	int ExplosionDamage;
 	UPROPERTY(editAnywhere, BlueprintReadWrite, Category = "Item")
 	int ExplosionRadius;
+
+	UPROPERTY(editAnywhere, BlueprintReadWrite, Category = "Effect")
+	UParticleSystem* Particle;
+	UPROPERTY(editAnywhere, BlueprintReadWrite, Category = "Effect")
+	USoundBase* Sound;
 	 
 	virtual void ActivateItem(AActor* Activator) override;
 	void Explode();
 	
 protected:
 	FTimerHandle ExplodeTimer;
+	bool bHasExploded;
 };
