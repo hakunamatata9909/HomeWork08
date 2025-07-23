@@ -24,15 +24,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Score");
 	int32 Score;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
-	float LevelDuration;
+	float WaveDuration;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
 	int32 MaxLevels;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Level")
 	TArray<FName> LevelNames;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MaxWave")
+	int32 MaxWave;
+	
 	int32 CurrentLevelIndex;
-	FTimerHandle LevelTimer;
+	FTimerHandle WaveTimer;
 	FTimerHandle HudUpdateTimer;
+	int32 CurrentWave;
+
 	
 	UFUNCTION(BlueprintPure, Category = "Score")
 	int32 GetScore() const;
@@ -45,7 +49,10 @@ public:
 	void StartLevel();
 	void OnCoinCollected();
 	void UpdateHUD();
-	void OnLeveltimedUp();
 	void EndLevel();
 	virtual void BeginPlay() override;
+	void OnWaveTimedUp();
+	void StartWave();
+	void EndWave();
+	void NextWave();
 };

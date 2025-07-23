@@ -69,11 +69,13 @@ void ABaseItem:: ActivateItem(AActor* Activator)
 	if (Pickup)
 	{
 		FTimerHandle TimerHandle;
+		TWeakObjectPtr<UParticleSystemComponent> WeakPickup = Pickup;
 		GetWorld()->GetTimerManager().SetTimer(
 			TimerHandle,
-			[Pickup]()
+			[WeakPickup]()
 			{
-				Pickup->DestroyComponent();
+				if (WeakPickup.IsValid())
+				WeakPickup->DestroyComponent();
 			},
 			2.0f,
 			false

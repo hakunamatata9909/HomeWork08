@@ -20,7 +20,7 @@ public:
 	int32 Score;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SpartaGameInstance")
 	int32 CurrentLevelIndex;
-
+	
 	UFUNCTION(BlueprintCallable, Category = "SpartaGameInstance")
 	void AddToScore(int32 Amount);
 };

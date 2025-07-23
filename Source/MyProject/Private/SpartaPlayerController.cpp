@@ -83,7 +83,7 @@ void ASpartaPlayerController::ShowMainMenu(bool bIsRestart)
 			}
 			else
 			{
-				ButtonText->SetText(FText::FromString(TEXT("start")));
+				ButtonText->SetText(FText::FromString(TEXT("Start")));
 			}
 
 			if (bIsRestart)
